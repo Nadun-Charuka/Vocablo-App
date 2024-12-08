@@ -7,119 +7,189 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primaryColor: const Color(0xFF1DE9B6), // Vibrant Teal
+        scaffoldBackgroundColor: const Color(0xFFF1F1F1), // Soft Light Gray
+        textTheme: const TextTheme(
+          bodyLarge:
+              TextStyle(color: Color(0xFF2F4F4F)), // Dark Slate Gray Text
+          bodyMedium: TextStyle(color: Color(0xFF1DE9B6)), // Teal Text
+          titleLarge:
+              TextStyle(color: Color(0xFF2F4F4F)), // Dark Slate Gray for titles
+          bodySmall: TextStyle(
+              color: Color(0xFF616161)), // Charcoal Gray for secondary text
+        ),
+        buttonTheme: const ButtonThemeData(
+          buttonColor: Color(0xFFFF6F61), // Coral Button Color
+        ),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(
+                secondary: const Color(0xFF3D5AFE)) // Light Indigo Accent Color
+            .copyWith(
+                surface: const Color(
+                    0xFFF1F1F1)), // Surface color (matches background)
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        backgroundColor: const Color(0xFF1DE9B6), // Vibrant Teal
+        title:
+            Text('Vocablo App', style: Theme.of(context).textTheme.titleLarge),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          color: const Color(0xFF3D5AFE), // Light Indigo
+          onPressed: () {},
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            color: const Color(0xFF3D5AFE), // Light Indigo
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16.0),
+        children: [
+          // **Different Sizes of Text**
+          Text('Welcome to Vocablo',
+              style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 10),
+          Text('Learning Vocabulary Made Fun!',
+              style: Theme.of(context).textTheme.bodyMedium),
+          const SizedBox(height: 20),
+
+          // **Buttons**
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFFF6F61)),
+            child: const Text('Primary Action'), // Coral Button Color
+          ),
+          const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFA5E1D5)),
+            child: const Text('Secondary Action'), // Light Teal Button
+          ),
+          const SizedBox(height: 20),
+
+          // **Links**
+          GestureDetector(
+            onTap: () {},
+            child: const Text(
+              'Click here for more info',
+              style: TextStyle(color: Color(0xFF1DE9B6)), // Teal for links
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          // **Warning Messages**
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            color: const Color(0xFFF9E79F), // Light Yellow (Warning)
+            child: const Row(
+              children: [
+                Icon(Icons.warning, color: Colors.orange),
+                SizedBox(width: 8),
+                Expanded(
+                    child: Text('This is a warning message',
+                        style: TextStyle(color: Color(0xFF2F4F4F)))),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          // **Cards**
+          Card(
+            color: const Color(0xFFF1F1F1), // Soft Light Gray Card Background
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Card Title',
+                      style: Theme.of(context).textTheme.titleLarge),
+                  const SizedBox(height: 10),
+                  Text('This is some content inside the card.',
+                      style: Theme.of(context).textTheme.bodyLarge),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          // **ListView**
+          SizedBox(
+            height: 200,
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: const Icon(Icons.check_circle,
+                      color: Color(0xFF1DE9B6)), // Vibrant Teal
+                  title: Text('List Item ${index + 1}',
+                      style: Theme.of(context).textTheme.bodyLarge),
+                  subtitle: Text('Details of item ${index + 1}',
+                      style: Theme.of(context).textTheme.bodySmall),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          // **Progress Bar**
+          Column(
+            children: [
+              Text('Loading...', style: Theme.of(context).textTheme.bodyMedium),
+              const SizedBox(height: 10),
+              const LinearProgressIndicator(
+                value: 0.5,
+                color: Color(0xFF1DE9B6), // Vibrant Teal
+                backgroundColor: Color(0xFFF1F1F1), // Soft Light Gray
+              ),
+            ],
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        backgroundColor: const Color(0xFF1DE9B6), // Vibrant Teal
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        onPressed: () {},
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color(0xFF1DE9B6), // Vibrant Teal
+        selectedItemColor: const Color(0xFF3D5AFE), // Light Indigo
+        unselectedItemColor: Colors.white,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Practice',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Add',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+      ),
     );
   }
 }
